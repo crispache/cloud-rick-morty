@@ -47,8 +47,3 @@
   gap: 30px;
   flex-wrap: wrap;
 }
-
-.member-details .info .character-name {
-  display: flex;
-  gap: 5px;
-}

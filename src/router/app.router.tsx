@@ -1,7 +1,7 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { RickMortyTheme } from "core/themes";
-import { switchRoutes } from "./routes";
-import { DetailScene, ListScene } from "scenes";
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { RickMortyTheme } from 'core/themes';
+import { switchRoutes } from './routes';
+import { DetailScene, ListScene } from 'scenes';
 
 export const AppRouter = () => {
   return (
