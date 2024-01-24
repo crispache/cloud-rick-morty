@@ -12,3 +12,7 @@ https://rickandmortyapi.com/
 - TypeScript
 - Vite
 - Axios
+
+#### Enlace de la aplicación
+
+[Ver](https://crispache.github.io/cloud-rick-morty/#/list)
