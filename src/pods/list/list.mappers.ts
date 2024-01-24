@@ -1,13 +1,16 @@
-import * as apiModel from './api/list.api-model';
-import * as viewModel from './list.vm';
-import { mapToCollection } from 'common/mappers';
+import { CharacterApi } from "./api/api.model";
+import * as vm from "./list.vm";
 
-const mapMemberFromApiToVm = (member: apiModel.Member): viewModel.Member => ({
-  id: member.id,
-  name: member.login,
-  imageUrl: member.avatar_url,
-});
 
-export const mapMemberListFromApiToVm = (
-  memberList: apiModel.Member[]
-): viewModel.Member[] => mapToCollection(memberList, mapMemberFromApiToVm);
+export const mapCharactersToVM = ( data: CharacterApi[]): vm.CharacterEntity[] => {
+   return data.map(mapCharacterToVM);
+}
+
+
+export const mapCharacterToVM = (data: CharacterApi): vm.CharacterEntity => ({
+    id: data.id,
+    name: data.name,
+    image: data.image,
+    gender: data.gender,
+    species: data.species,
+})

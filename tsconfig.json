@@ -9,7 +9,6 @@
     "jsx": "react-jsx",
     "noLib": false,
     "allowJs": true,
-    "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "baseUrl": "./src/",
@@ -17,11 +16,10 @@
       "assets": ["assets"],
       "common": ["common"],
       "core": ["core"],
-      "frames": ["frames"],
+      "router": ["router"],
       "layouts": ["layouts"],
       "pods": ["pods"],
       "scenes": ["scenes"],
-      "common-app": ["common-app"]
     }
   },
   "include": ["./src/**/*", "./vite-env.d.ts"]

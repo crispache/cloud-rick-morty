@@ -1,1 +1,2 @@
-export * from './app.layout';
+export * from './default.layout';
+export * from './rickmorty.layout'

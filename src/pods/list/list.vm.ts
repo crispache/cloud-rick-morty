@@ -1,5 +1,7 @@
-export interface Member {
-  id: string;
-  name: string;
-  imageUrl: string;
+export interface CharacterEntity {
+    id: number;
+    name: string;
+    image: string;
+    gender: 'Female' | 'Male' | 'Genderless' | 'unknown';
+    species: string;
 }

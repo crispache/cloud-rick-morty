@@ -1,34 +1,22 @@
-import React from 'react';
-import { envConstants } from 'core/constants';
-import * as api from './api';
-import { mapMemberListFromApiToVm } from './list.mappers';
-import { ListComponent } from './list.component';
-import { Member } from './list.vm';
+import React from "react";
+import { useList } from "./hooks";
+import { List } from "./list.component";
 
-interface Props {
-  className?: string;
-}
-
-export const ListContainer: React.FC<Props> = (props) => {
-  const { className } = props;
-  const [organization] = React.useState(envConstants.ORGANIZATION);
-  const [memberList, setMemberList] = React.useState<Member[]>([]);
-
-  const handleLoadMemberList = async () => {
-    const apiMemberList = await api.getMemberList(organization);
-    const vmMemberList = mapMemberListFromApiToVm(apiMemberList);
-    setMemberList(vmMemberList);
-  };
-
-  React.useEffect(() => {
-    handleLoadMemberList();
-  }, [organization]);
-
+export const ListContainer: React.FC = () => {
+  const { listCharacters, isLoading, totalPages, errorMessage, currentPage, onChangePage, filter, setFilter } = useList();
+ 
   return (
-    <ListComponent
-      className={className}
-      organization={organization}
-      memberList={memberList}
-    />
+    <>
+       <List
+        characters={listCharacters}
+        isLoading={isLoading}
+        totalPages={totalPages}
+        errorMessage={errorMessage}
+        onChangePage={onChangePage}
+        currentPage={currentPage}
+        filter={filter}
+        setFilter={setFilter}
+      />
+    </>
   );
 };

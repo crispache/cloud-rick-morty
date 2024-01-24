@@ -1,11 +1,11 @@
-import React from 'react';
-import { AppLayout } from 'layouts';
-import { ListContainer } from 'pods/list';
+import React from "react";
+import { RickMortyLayout } from "layouts";
+import { ListContainer } from "pods";
 
 export const ListScene: React.FC = () => {
   return (
-    <AppLayout>
-      {({ className }) => <ListContainer className={className} />}
-    </AppLayout>
+    <RickMortyLayout>
+        <ListContainer />
+    </RickMortyLayout>
   );
 };

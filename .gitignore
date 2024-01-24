@@ -10,6 +10,7 @@ junit.xml
 .awcache
 .env
 server/public
+.DS_Store
 
 # FTPS
 .cache

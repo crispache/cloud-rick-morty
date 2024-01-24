@@ -1,25 +1,75 @@
-import React from 'react';
-import { cx } from '@emotion/css';
-import { Typography } from '@mui/material';
-import { TableComponent } from './components';
-import { Member } from './list.vm';
-import * as classes from './list.styles';
+import React from "react";
+import { CharacterEntity } from "./list.vm";
+import {
+  ListEmpty,
+  ListHeader,
+  ListItem,
+  ListLoading,
+  ListPagination,
+  ListSearch,
+} from "./components";
+import { ErrorNotification } from "common";
+
+
 
 interface Props {
-  organization: string;
-  memberList: Member[];
-  className?: string;
+  characters: CharacterEntity[];
+  isLoading: boolean;
+  totalPages: number;
+  errorMessage?: string;
+  onChangePage: (page: number) => void;
+  currentPage: number;
+  filter: string;
+  setFilter: (filter: string ) => void;
 }
 
-export const ListComponent: React.FC<Props> = (props) => {
-  const { organization, memberList, className } = props;
+export const List: React.FC<Props> = React.memo((props) => {
+  const { characters, isLoading, totalPages, onChangePage, errorMessage, currentPage, filter, setFilter } = props;
+  const [showError, setShowError] = React.useState<boolean>(false);
+
+  const isListEmpty = React.useMemo<boolean>(() => {
+    return characters.length === 0 ? true : false;
+  }, [characters]);
+
+  React.useEffect(() => {
+    if (errorMessage) {
+      setShowError(true);
+    }
+  }, [errorMessage]);
 
   return (
-    <div className={cx(classes.root, className)}>
-      <Typography className={classes.title} variant="h2">
-        Organization: {organization}
-      </Typography>
-      <TableComponent className={classes.memberList} memberList={memberList} />
+    <div className="characters-list-container">
+      <ListHeader />
+
+      <ListSearch filter={filter} setFilter={setFilter} />
+
+      {isLoading && <ListLoading />}
+
+      {!isLoading && (
+        <>
+          <div className="characters-list">
+            {isListEmpty && <ListEmpty />}
+
+            {!isListEmpty &&
+              characters.map((character) => (
+                <ListItem character={character} key={character.id} />
+              ))}
+          </div>
+
+          {!isListEmpty && (
+            <ListPagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onChangePage={onChangePage}
+            />
+          )}
+        </>
+      )}
+      <ErrorNotification
+        isOpen={showError}
+        errorMessage={errorMessage}
+        handleClose={() => setShowError(false)}
+      />
     </div>
   );
-};
+});
