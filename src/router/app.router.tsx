@@ -1,11 +1,11 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { RickMortyTheme } from 'core/themes';
 import { switchRoutes } from './routes';
 import { DetailScene, ListScene } from 'scenes';
 
 export const AppRouter = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <RickMortyTheme>
         <Routes>
           <Route
@@ -16,6 +16,6 @@ export const AppRouter = () => {
           <Route path={switchRoutes.detail} element={<DetailScene />} />
         </Routes>
       </RickMortyTheme>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
