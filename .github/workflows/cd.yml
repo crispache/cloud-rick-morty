@@ -3,7 +3,7 @@ name: CD workflow
 on:
   push:
     branches:
-      - deploy-github-actions
+      - main
 
 jobs:
   cd:
